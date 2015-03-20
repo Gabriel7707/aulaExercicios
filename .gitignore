@@ -1,0 +1,137 @@
+-- GUARDAS
+guarda x 
+	| x == 1 = 1
+	| x == 2 = 2
+	| otherwise = 9999999
+
+--  DAR TIPOS AS FUNCS 
+
+an :: Bool->Bool->Bool
+an False _ = False
+an _ False = False
+an True True = True
+
+-- TUPLAS 
+
+func :: (Int , Int ) -> (Int , Int ) -> (Int , Int )
+func (a,b) (c,d) = (a+c ,b+d)
+
+-- extraindo dados de tuplas 
+
+nomes :: (String , String , String)
+nomes = ("ola ", "oi" , "bom dia ")
+
+sel_prim ( x , _ ,_) = x
+sel_sec ( _,y ,_) = y 
+sel_ter (_ ,_ , z) = z
+
+-- criando TIPOS
+
+type Nome = String
+type Idade = Int 
+type Ling = String
+
+type Pessoa = ( Nome , Idade , Ling )
+
+pessoa :: Pessoa
+pessoa = ("gab", 18 , "haskell")
+
+my_fst :: Pessoa->Nome
+my_fst ( n, i ,l ) = n
+
+-- LISTAS 
+
+		-- contar o tamanho da lista 
+size_list  [] = 0
+size_list (x:xs) = 1 + size_list xs
+
+       -- verificar de duas listas forem iguais 
+
+			-- [1,2,3] e [1,2,3] = True
+			-- [1,2,3] e [3,2,1] = False
+
+compListas :: [Int] -> [Int] -> Bool 
+compListas [] [] = True
+compListas _  [] = False 
+compListas [] _  = False
+compListas (a:b) (c:d) | a == c = compListas b d
+					   | otherwise = False 
+ 
+       -- funçao que rebece uma lista e retorna
+       -- o inverso dessa lista 
+
+inv_aux :: [t] -> [t] -> [t]
+inv_aux [] l_inv = l_inv
+inv_aux (x:xs) l_inv = inv_aux xs l_inv++[x]
+
+inv_lista :: [t] -> [t]
+inv_lista [] = []
+inv_lista l = inv_aux l []
+
+		----  ou -----
+
+inv_list :: [t] -> [t]
+inv_list [] = []
+inv_list (x:xs) = inv_list xs++[x]
+
+----- EXERCICIO DE LISTA 
+        -- se pertence a lista
+ 
+
+estaDentro :: [Int] -> Int ->Bool
+estaDentro [] _ = False
+estaDentro (x:xs) n | x == n = True
+					| otherwise = estaDentro xs n
+
+
+--------- busca maior 
+
+maisalto :: [Int] -> Int
+maisalto [x] = x
+maisalto (x:xs) | (x > maisalto xs) = x
+			| otherwise = maisalto xs
+
+
+----------- recebe uma lista e verifica se todos sao pares 
+
+
+
+
+todosPares :: [Int] -> Bool
+todosPares [] = True 
+todosPares (x:xs) | (mod x 2 == 1) = False
+				  | otherwise = todosPares xs
+				  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
